@@ -43,9 +43,7 @@ class _AddPageState extends State<AddPage> {
                 title: const Text('Add new upcoming title'),
                 actions: [
                   IconButton(
-                    onPressed: _imageURL == null ||
-                            _title == null ||
-                            _releaseDate == null
+                    onPressed: _imageURL == null || _title == null || _releaseDate == null
                         ? null
                         : () {
                             context.read<AddCubit>().add(
@@ -74,9 +72,7 @@ class _AddPageState extends State<AddPage> {
                     _releaseDate = newValue;
                   });
                 },
-                selectedDateFormatted: _releaseDate == null
-                    ? null
-                    : DateFormat.yMMMMEEEEd().format(_releaseDate!),
+                selectedDateFormatted: _releaseDate == null ? null : DateFormat.yMMMMEEEEd().format(_releaseDate!),
               ),
             );
           },

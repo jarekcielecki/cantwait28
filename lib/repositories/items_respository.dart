@@ -34,12 +34,7 @@ class ItemsRepository {
     if (userID == null) {
       throw Exception('User is not logged in');
     }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .doc(id)
-        .delete();
+    return FirebaseFirestore.instance.collection('users').doc(userID).collection('items').doc(id).delete();
   }
 
   Future<ItemModel> get({required String id}) async {
@@ -47,12 +42,7 @@ class ItemsRepository {
     if (userID == null) {
       throw Exception('User is not logged in');
     }
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .doc(id)
-        .get();
+    final doc = await FirebaseFirestore.instance.collection('users').doc(userID).collection('items').doc(id).get();
     return ItemModel(
       id: doc.id,
       title: doc['title'],
@@ -68,13 +58,9 @@ class ItemsRepository {
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
-      throw Exception('User is not logged in');
+      throw Exception('Użytkownik niezalogowany');
     }
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('items')
-        .add(
+    await FirebaseFirestore.instance.collection('users').doc(userID).collection('items').add(
       {
         'title': title,
         'image_url': imageURL,
